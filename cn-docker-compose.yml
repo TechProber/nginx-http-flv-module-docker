@@ -2,10 +2,10 @@
 version: "3.8"
 
 services:
-  nginx-http-flv-module:
+  cn-nginx-http-flv-module:
     build:
       context: ./
-      dockerfile: ./Dockerfile
+      dockerfile: ./cn_Dockerfile
     container_name: nginx
     ports:
       - 5239:80 # http

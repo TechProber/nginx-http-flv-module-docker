@@ -47,17 +47,36 @@ sudo mkdir -p /opt/appdata/nginx
 
 Place your http assets under `/opt/appdata/nginx/`. The data will be mapped to `/www` inside the container
 
-## Run locally
+## Build the image manually
 
 ```bash
 # build image locally
-docker-compose build
+docker-compose build nginx-http-flv-module
+```
 
+## Run locally
+
+```bash
 # run container locally
-docker-compose up -d
+docker-compose up -d nginx-http-flv-module
 
 # restart container locally
-docker-compose up -d --force-recreate
+docker-compose up -d nginx-http-flv-module --force-recreate
+```
+
+## CN Support
+
+Use the `cn-alicloud` as apk source to build the image locally
+
+```bash
+# build image locally
+docker-compose build -f cn-docker-compose.yml
+
+# run container locally
+docker-compose up -d cn-nginx-http-flv-module
+
+# restart container locally
+docker-compose up -d cn-nginx-http-flv-module --force-recreate
 ```
 
 ## Latest Releases
