@@ -10,7 +10,8 @@ ARG HTTP_FLV_MODULE=9000
 FROM alpine:latest as base-image
 
 # Bake dependencies
-RUN apk add --no-cache g++ pcre-dev zlib-dev make openssl openssl-dev
+RUN apk add --no-cache \
+    g++ pcre-dev zlib-dev make openssl openssl-dev
 
 ###################################################
 # Build Stage
@@ -53,17 +54,15 @@ ARG HTTPS_PORT
 ARG RTMP_PORT
 ARG HTTP_FLV_MODULE
 
-ENV HTTP_PORT ${HTTP_PORT}}
-# ENV HTTPS_PORT ${HTTPS_PORT}
-ENV RTMP_PORT ${RTMP_PORT}}
-ENV HTTP_FLV_MODULE ${HTTP_FLV_MODULE}}
+ENV HTTP_PORT ${HTTP_PORT}} \
+    RTMP_PORT ${RTMP_PORT}} \
+    HTTP_FLV_MODULE ${HTTP_FLV_MODULE}}
 
 COPY --from=build-stage /usr/local/nginx /usr/local/nginx
 COPY --from=build-stage /etc/nginx /etc/nginx
 
 # Add NGINX path, config and static files.
 ENV PATH "${PATH}:/usr/local/nginx/sbin"
-COPY nginx.conf /etc/nginx/nginx.conf
 RUN mkdir -p /opt/data
 RUN mkdir /www
 
