@@ -59,3 +59,7 @@ docker-compose up -d
 - https://blog.csdn.net/a_917/article/details/106709928
 - https://blog.csdn.net/Prinz_Corn/article/details/120746676
 - https://blog.csdn.net/xjcallen/article/details/107174374
+
+## License
+
+[MIT (C) TechProber](https://github.com/yqlbu/TechProber/nginx-http-flv-module-docker/blob/master/LICENSE)
