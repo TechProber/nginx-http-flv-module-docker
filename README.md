@@ -19,7 +19,7 @@
     </a>
 </p>
 
-### Introduction
+## Introduction
 
 CopyRight 2021-2022 TechProber. All rights reserved.
 
@@ -31,7 +31,23 @@ This repo serves to provide the end-users a way to host their stream server easi
 
 > Both `rtmp` and `http` are recognized as `stream` in Nginx
 
-### Run locally
+## Preparation
+
+#### Nginx Configuration
+
+- Replace `./nginx.conf` with your own configuration, if you plan to add extra configurations such as `rewrite-rules`. During the container build period, The `nginx.conf` will be copied to the associated path in the container.
+
+#### Custom http assets
+
+Create the appdata directory
+
+```bash
+mkdir -p /opt/appdata/nginx
+```
+
+Place your http assets under `/opt/appdata/nginx/`. The data will be mapped to `/www` inside the container
+
+## Run locally
 
 ```bash
 # build image locally
@@ -44,12 +60,12 @@ docker-compose up -d
 docker-compose up -d --force-recreate
 ```
 
-### Latest Releases
+## Latest Releases
 
 - nginx - https://nginx.org/download/
 - nginx-http-flv-module - https://github.com/winshining/nginx-http-flv-module/archive/refs/tags/
 
-### References
+## References
 
 - https://github.com/alfg/docker-nginx-rtmp/blob/master/Dockerfile
 - https://github.com/nginxinc/docker-nginx/blob/6f0396c1e06837672698bc97865ffcea9dc841d5/mainline/alpine-perl/Dockerfile
