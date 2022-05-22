@@ -62,4 +62,4 @@ docker-compose up -d
 
 ## License
 
-[MIT (C) TechProber](https://github.com/yqlbu/TechProber/nginx-http-flv-module-docker/blob/master/LICENSE)
+[MIT (C) TechProber](https://github.com/TechProber/nginx-http-flv-module-docker/blob/master/LICENSE)
