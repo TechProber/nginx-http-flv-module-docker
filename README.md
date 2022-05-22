@@ -39,6 +39,9 @@ docker-compose build
 
 # run container locally
 docker-compose up -d
+
+# restart container locally
+docker-compose up -d --force-recreate
 ```
 
 ### Latest Releases
