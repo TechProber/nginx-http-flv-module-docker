@@ -33,13 +33,13 @@ This repo serves to provide the end-users a way to host their stream server easi
 
 ## Preparation
 
-Create the appdata directory
+Create the `appdata` directory
 
 ```bash
 sudo mkdir -p /opt/appdata/nginx/config
 ```
 
-#### Nginx Configuration
+### Nginx Configuration
 
 ##### Import Notes:
 
@@ -47,7 +47,7 @@ sudo mkdir -p /opt/appdata/nginx/config
 
 Replace `./nginx.conf` with your own configuration, if you plan to add extra configurations such as `rewrite-rules`. During the container build period, The `nginx.conf` will be copied to the associated path in the container.
 
-#### Custom http assets
+### Custom http assets
 
 ##### Import Notes:
 
