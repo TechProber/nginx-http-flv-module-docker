@@ -8,7 +8,7 @@ services:
       dockerfile: ./cn_dockerfile
     container_name: nginx
     ports:
-      - 5239:80 # http
+      - 80:80 # http
       - 1935:1935 # rtmp
     volumes:
       - /opt/appdata/nginx:/www # http-assets
