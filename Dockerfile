@@ -64,7 +64,8 @@ COPY --from=build-stage /etc/nginx /etc/nginx
 # Add NGINX path, config and static files.
 ENV PATH "${PATH}:/usr/local/nginx/sbin"
 COPY nginx.conf /etc/nginx/nginx.conf
-RUN mkdir -p /opt/data && mkdir /www
+RUN mkdir -p /opt/data
+RUN mkdir /www
 
 EXPOSE 80
 EXPOSE 9000
