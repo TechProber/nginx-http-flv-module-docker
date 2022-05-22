@@ -42,7 +42,7 @@ This repo serves to provide the end-users a way to host their stream server easi
 Create the appdata directory
 
 ```bash
-mkdir -p /opt/appdata/nginx
+sudo mkdir -p /opt/appdata/nginx
 ```
 
 Place your http assets under `/opt/appdata/nginx/`. The data will be mapped to `/www` inside the container
