@@ -15,7 +15,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
 ###################################################
 # Build Stage
-FROM base-image
+FROM base-image as build-stage
 ARG NGINX_VERSION
 ARG NGINX_HTTP_FLV_MODULE
 
