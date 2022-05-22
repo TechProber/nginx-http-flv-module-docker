@@ -10,8 +10,7 @@ ARG HTTP_FLV_MODULE=9000
 FROM alpine:latest as base-image
 
 # Bake dependencies
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories\
-	&& apk add --no-cache g++ pcre-dev zlib-dev make openssl openssl-dev
+RUN apk add --no-cache g++ pcre-dev zlib-dev make openssl openssl-dev
 
 ###################################################
 # Build Stage
