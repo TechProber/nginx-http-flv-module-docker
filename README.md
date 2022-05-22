@@ -55,13 +55,6 @@ Replace `./nginx.conf` with your own configuration, if you plan to add extra con
 
 Place your http assets under `/opt/appdata/nginx/`. The data will be mapped to `/www` inside the container
 
-## Build the image manually
-
-```bash
-# build image locally
-docker-compose build -f ./docker-compose.yml
-```
-
 ## Run locally
 
 ```bash
@@ -78,10 +71,10 @@ Use the `cn-alicloud` as apk source to build the image locally
 
 ```bash
 # run container locally
-docker-compose up -d -f ./cn-docker-compose.yml
+docker-compose -f ./cn-docker-compose.yml up -d
 
 # restart container locally
-docker-compose up -d --force-recreate -f ./cn-docker-compose.yml
+docker-compose -f ./cn-docker-compose.yml up -d --force-recreate
 ```
 
 ## Latest Releases
