@@ -55,7 +55,7 @@ Replace `./nginx.conf` with your own configuration, if you plan to add extra con
 
 Place your http assets under `/opt/appdata/nginx/`. The data will be mapped to `/www` inside the container
 
-## Run locally
+## Run Locally
 
 ```bash
 # run container locally
