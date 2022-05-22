@@ -59,17 +59,17 @@ Place your http assets under `/opt/appdata/nginx/`. The data will be mapped to `
 
 ```bash
 # build image locally
-docker-compose build nginx-http-flv-module
+docker-compose build -f ./docker-compose.yml
 ```
 
 ## Run locally
 
 ```bash
 # run container locally
-docker-compose up -d nginx-http-flv-module
+docker-compose up -d
 
 # restart container locally
-docker-compose up -d nginx-http-flv-module --force-recreate
+docker-compose up -d --force-recreate
 ```
 
 ## CN Support
@@ -77,14 +77,11 @@ docker-compose up -d nginx-http-flv-module --force-recreate
 Use the `cn-alicloud` as apk source to build the image locally
 
 ```bash
-# build image locally
-docker-compose build -f cn-docker-compose.yml
-
 # run container locally
-docker-compose up -d cn-nginx-http-flv-module
+docker-compose up -d -f ./cn-docker-compose.yml
 
 # restart container locally
-docker-compose up -d cn-nginx-http-flv-module --force-recreate
+docker-compose up -d --force-recreate -f ./cn-docker-compose.yml
 ```
 
 ## Latest Releases
