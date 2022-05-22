@@ -1,19 +1,60 @@
-### 介绍
+<h1 align="center">nginx-http-flv-module-docker</h1>
+<p align="center">
+    <em>Build a Stream Server with Nginx</em>
+</p>
 
-> 由于 nginx-http-flv-module 官方镜像是四年前的，想弄个最新版的，就自己打了一个包，这个项目仅作为保留使用
+<p align="center">
+    <img src="https://img.shields.io/github/license/TechProber/nginx-http-flv-module-docker?color=critical" alt="License"/>
+    <a href="https://hits.seeyoufarm.com">
+      <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FTechProber%2Fnginx-http-flv-module-docker&count_bg=%235322B2&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/>
+    </a>
+    <a href="https://img.shields.io/tokei/lines/github/TechProber/nginx-http-flv-module-docker?color=orange">
+      <img src="https://img.shields.io/tokei/lines/github/TechProber/nginx-http-flv-module-docker?color=orange" alt="lines">
+    </a>
+    <a href="https://hub.docker.com/repository/docker/hikariai/">
+        <img src="https://img.shields.io/badge/docker-v20.10-blue" alt="Version">
+    </a>
+    <a href="https://github.com/TechProber/nginx-http-flv-module-docker">
+        <img src="https://img.shields.io/github/last-commit/TechProber/nginx-http-flv-module-docker" alt="lastcommit"/>
+    </a>
+</p>
 
-1. 本项目使用最新版 `nginx-http-flv-module` 目前版本为 `1.2.10`
-2. rtmp 和 http nginx 解析都为 stream
+### Introduction
+
+CopyRight 2021-2022 TechProber. All rights reserved.
+
+Maintainer: [ Kevin Yu (@yqlbu) ](https://github.com/yqlbu), [ Huang (@earrmouth) ](https://github.com/earrmouth), and [ SuLingGG (@SuLingGG) ](https://github.com/SuLingGG)
+
+This repo serves to provide the end-users a way to host their stream server easily with Nginx
+
+##### Import Notes:
+
+> Both `rtmp` and `http` are recognized as `stream` in Nginx
+
+### Run locally
+
+```bash
+# build image locally
+docker-compose build
+
+# run container locally
+docker-compose up -d
+```
+
+### Latest Releases
+
+- nginx - https://nginx.org/download/
+- nginx-http-flv-module - https://github.com/winshining/nginx-http-flv-module/archive/refs/tags/
 
 ### References
 
 - https://github.com/alfg/docker-nginx-rtmp/blob/master/Dockerfile
 - https://github.com/nginxinc/docker-nginx/blob/6f0396c1e06837672698bc97865ffcea9dc841d5/mainline/alpine-perl/Dockerfile
-- https://github.com/winshining/nginx-http-flv-module/blob/master/README.CN.md
+- https://github.com/winshining/nginx-http-flv-module-docker/blob/master/README.CN.md
 - https://www.jianshu.com/p/123df9333db0
 - https://blog.csdn.net/syy014799/article/details/121885306
 - https://blog.csdn.net/a_917/article/details/121473954
-- https://hub.docker.com/r/mycujoo/nginx-http-flv-module
+- https://hub.docker.com/r/mycujoo/nginx-http-flv-module-docker
 - https://blog.csdn.net/a_917/article/details/121473954?spm=1001.2014.3001.5502
 - https://blog.csdn.net/a_917/article/details/106709928
 - https://blog.csdn.net/Prinz_Corn/article/details/120746676
