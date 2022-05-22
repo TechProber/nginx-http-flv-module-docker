@@ -12,5 +12,5 @@ services:
       - 1935:1935 # rtmp
     volumes:
       - /opt/appdata/nginx:/www # http-assets
-      - /opt/appdata/config/nginx.conf:/etc/nginx/nginx.conf # nginx.conf
+      - /opt/appdata/nginx/config/nginx.conf:/etc/nginx/nginx.conf # nginx.conf
     restart: always
