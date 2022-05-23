@@ -1,0 +1,51 @@
+
+<html>
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>LIVE</title>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+</head>
+<body>
+<div class="mainContainer">
+    <video id="videoElement" class="video-js" controls preload="auto" poster="./static/images/nogazika46.jpg" data-setup='' loop/>
+</div>
+<br>
+<script src="static/js/flv.min.js"></script>
+<script>
+    var player = document.getElementById('videoElement');
+    if (flvjs.isSupported()) {
+        var flvPlayer = flvjs.createPlayer({
+            type: 'flv',
+            "isLive": true,
+            url: 'http://localhost/live',
+
+        });
+        flvPlayer.attachMediaElement(videoElement);
+        flvPlayer.load();
+        flv_start();
+    }
+
+    function flv_start() {
+        player.play();
+    }
+
+    function flv_pause() {
+        player.pause();
+    }
+
+    function flv_destroy() {
+        player.pause();
+        player.unload();
+        player.detachMediaElement();
+        player.destroy();
+        player = null;
+    }
+
+    function flv_seekto() {
+        player.currentTime = parseFloat(document.getElementsByName('seekpoint')[0].value);
+    }
+</script>
+</body>
+
+</html>
