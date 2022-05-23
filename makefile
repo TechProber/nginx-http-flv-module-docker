@@ -19,35 +19,35 @@ endif
 # List of commands
 .PHONY: login
 login:
-	@echo "==> Login to quay.io"
+	@echo "[INFO] Login to quay.io"
 	@echo $(QUAY_PASS) | docker login $(REGISTRY) -u $(REGISTRY_USERNAME) --password-stdin
 
 .PHONY: build
 build:
-	@echo "==> Build application image with tag $(IMAGE_TAG)"
+	@echo "[INFO] Build application image with tag $(IMAGE_TAG)"
 	@DOCKER_BUILDKIT=1 docker-compose build \
 		-f $(COMPOSE_FILE)
 
 .PHONY: tag
 tag:
-	@echo "==> Tag the local image as quay.io image"
+	@echo "[INFO] Tag the local image as quay.io image"
 	@docker tag $(IMAGE_NAME):$(IMAGE_TAG) $(REGISTRY)/$(REGISTRY_USERNAME):$(IMAGE_TAG)
 	@docker tag $(IMAGE_NAME):$(IMAGE_TAG) $(REGISTRY)/$(REGISTRY_USERNAME):latest
 
 .PHONY: publish
 publish: login build tag
-	@echo "==> Publish application image with tag $(IMAGE_TAG) to $(REGISTRY)"
+	@echo "[INFO] Publish application image with tag $(IMAGE_TAG) to $(REGISTRY)"
 	@docker push $(IMAGE_NAME):$(IMAGE_TAG) $(REGISTRY)/$(REGISTRY_USERNAME):$(IMAGE_TAG)
 	@docker push $(IMAGE_NAME):$(IMAGE_TAG) $(REGISTRY)/$(REGISTRY_USERNAME):latest
 
 .PHONY: run
 run:
-	@echo "==> Run application with tag $(IMAGE_TAG) to $(REGISTRY) locally"
+	@echo "[INFO] Run application with tag $(IMAGE_TAG) to $(REGISTRY) locally"
 	@docker-compose up -d
 
 .PHONY: restart
 restart:
-	@echo "==> Restart application with tag $(IMAGE_TAG) to $(REGISTRY) locally"
+	@echo "[INFO] Restart application with tag $(IMAGE_TAG) to $(REGISTRY) locally"
 	@docker-compose up -d --force-recreate
 
 .PHONY: help
