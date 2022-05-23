@@ -34,8 +34,7 @@ RUN wget https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz \
 WORKDIR /workspace/nginx-${NGINX_VERSION}
 
 # Build from source
-RUN \
-  ./configure \
+RUN ./configure \
   --prefix=/usr/local/nginx \
   --add-module=/workspace/nginx-http-flv-module-${NGINX_HTTP_FLV_MODULE} \
   --conf-path=/etc/nginx/nginx.conf \
