@@ -59,10 +59,10 @@ Place your http assets under `/opt/appdata/nginx/`. The data will be mapped to `
 
 ```bash
 # run container locally
-docker-compose up -d
+make run
 
 # restart container locally
-docker-compose up -d --force-recreate
+make restart
 ```
 
 ## CN Support
@@ -71,10 +71,10 @@ Use the `cn-alicloud` as apk source to build the image locally
 
 ```bash
 # run container locally
-docker-compose -f ./cn-docker-compose.yml up -d
+docker-compose -f ./build/cn-docker-compose.yml up -d
 
 # restart container locally
-docker-compose -f ./cn-docker-compose.yml up -d --force-recreate
+docker-compose -f ./build/cn-docker-compose.yml up -d --force-recreate
 ```
 
 ## Latest Releases
