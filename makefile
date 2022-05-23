@@ -1,0 +1,77 @@
+# Makefile
+
+DOCKERFILE := dockerfile
+REGISTRY_USERNAME := techprober
+REGISTRY := quay.io
+IMAGE_NAME := nginx-http-flv-module
+IMAGE_TAG := dev
+DOMAIN_NAME := hikariai.net
+ENV := prod
+VERSION := latest
+
+# Modify tagging mechanism
+ifneq ($(VERSION), latest)
+	export IMAGE_TAG=$(VERSION)
+else
+	export IMAGE_TAG=latest
+endif
+
+# List of commands
+.PHONY: login
+login:
+	@echo "==> Login to quay.io"
+	@echo $(QUAY_PASS) | docker login $(REGISTRY) -u $(REGISTRY_USERNAME) --password-stdin
+
+.PHONY: build
+build:
+	@echo "==> Build application image with tag $(IMAGE_TAG)"
+	@DOCKER_BUILDKIT=1 docker build \
+	  --platform=linux/amd64 \
+		-t $(IMAGE_NAME):$(IMAGE_TAG) \
+		.
+
+.PHONY: tag
+tag:
+	@echo "==> Tag the local image as quay.io image"
+	@docker tag $(IMAGE_NAME):$(IMAGE_TAG) $(REGISTRY)/$(REGISTRY_USERNAME):$(IMAGE_TAG)
+	@docker tag $(IMAGE_NAME):$(IMAGE_TAG) $(REGISTRY)/$(REGISTRY_USERNAME):latest
+
+.PHONY: publish
+publish: login build tag
+	@echo "==> Publish application image with tag $(IMAGE_TAG) to $(REGISTRY)"
+	@docker push $(IMAGE_NAME):$(IMAGE_TAG) $(REGISTRY)/$(REGISTRY_USERNAME):$(IMAGE_TAG)
+	@docker push $(IMAGE_NAME):$(IMAGE_TAG) $(REGISTRY)/$(REGISTRY_USERNAME):latest
+
+.PHONY: run
+run:
+	@echo "==> Run application with tag $(IMAGE_TAG) to $(REGISTRY) locally"
+	@docker-compose up -d
+
+.PHONY: restart
+restart:
+	@echo "==> Restart application with tag $(IMAGE_TAG) to $(REGISTRY) locally"
+	@docker-compose up -d --force-recreate
+
+.PHONY: help
+help:
+	$(info ${HELP_MESSAGE})
+	@exit 0
+
+define HELP_MESSAGE
+
+Usage: $ make [TARGETS]
+
+TARGETS
+
+	help            Show the help menu
+	build           Build the application image
+	run             Run the application container locally (VERSION optional)
+	publish         Build the application image, tag it with a custom version tag, and push it to the target registry (version required)
+
+EXAMPLE USAGE
+
+	build           Build the application image and tag it as latest
+	run             Run the application container locally with the latest tag
+	publish         Build the application iamge, tag it as v1.0.1, and push it to the target registry
+
+endef
