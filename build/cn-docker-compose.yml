@@ -5,7 +5,7 @@ services:
   cn-nginx-http-flv-module:
     build:
       context: ./
-      dockerfile: ./cn_dockerfile
+      dockerfile: ./build/cn-dockerfile
     container_name: nginx
     ports:
       - 80:80 # http

@@ -3,8 +3,10 @@ version: "3.8"
 
 services:
   nginx-http-flv-module:
+    build:
+      context: ./
+      dockerfile: ./build/dockerfile
     container_name: nginx
-    image: quay.io/techprober/nginx-http-flv-module:latest
     ports:
       - 80:80 # http
       - 1935:1935 # rtmp
