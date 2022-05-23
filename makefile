@@ -64,14 +64,18 @@ Usage: $ make [TARGETS]
 TARGETS
 
 	help            Show the help menu
+	login           Login to the target registry
 	build           Build the application image
-	run             Run the application container locally (VERSION optional)
+	tag             Tag the application image with a production tag to be pushed to the target registry
 	publish         Build the application image, tag it with a custom version tag, and push it to the target registry (version required)
+	run             Run the application container locally (VERSION optional)
+	restart         Restart the application container instance (VERSION optional)
 
 EXAMPLE USAGE
 
 	build           Build the application image and tag it as latest
-	run             Run the application container locally with the latest tag
 	publish         Build the application iamge, tag it as v1.0.1, and push it to the target registry
+	run             Run the application container locally with the latest tag
+	restart         Restart the application container with the latest tag, or a custom VERSION tag
 
 endef
