@@ -1,6 +1,6 @@
 # Makefile
 
-COMPOSE_FILE := build/docker-compose
+COMPOSE_FILE := build/docker-compose.yml
 REGISTRY_USERNAME := techprober
 REGISTRY := quay.io
 IMAGE_NAME := nginx-http-flv-module
@@ -25,8 +25,9 @@ login:
 .PHONY: build
 build:
 	@echo "[INFO] Build application image with tag $(IMAGE_TAG)"
-	@DOCKER_BUILDKIT=1 docker-compose build \
-		-f $(COMPOSE_FILE)
+	@DOCKER_BUILDKIT=1 docker-compose \
+		-f $(COMPOSE_FILE) \
+		build
 
 .PHONY: tag
 tag:
