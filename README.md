@@ -71,10 +71,10 @@ Use the `cn-alicloud` as apk source to build the image locally
 
 ```bash
 # run container locally
-docker-compose -f ./build/cn-docker-compose.yml up -d
+docker-compose -f ./build/cn-support/docker-compose.yml up -d
 
 # restart container locally
-docker-compose -f ./build/cn-docker-compose.yml up -d --force-recreate
+docker-compose -f ./build/cn-support/docker-compose.yml up -d --force-recreate
 ```
 
 ## Latest Releases
