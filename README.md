@@ -33,17 +33,18 @@ This repo serves to provide the end-users a way to host their stream server easi
 
 ## Preparation
 
-Create the `appdata` directory
+Create the `/etc/nginx` directory
 
 ```bash
-sudo mkdir -p /opt/appdata/nginx/config
+sudo mkdir -p /etc/nginx
+cd /etc/nginx
 ```
 
 ### Nginx Configuration
 
 ##### Import Notes:
 
-> The `nginx.conf` are stored under `/opt/appdata/nginx/config/`, you may modify the default path to adjust your need.
+> The `nginx.conf` are stored under `/etc/nginx`, you may modify the default path to adjust your need.
 
 Replace `./nginx.conf` with your own configuration, if you plan to add extra configurations such as `rewrite-rules`. During the container build period, The `nginx.conf` will be copied to the associated path in the container.
 
@@ -51,9 +52,9 @@ Replace `./nginx.conf` with your own configuration, if you plan to add extra con
 
 ##### Import Notes:
 
-> The `http-assets` are stored under `/opt/appdata/nginx/`, you may modify the default path to adjust your need.
+> The `http-assets` are stored under `/etc/nginx`, you may modify the default path to adjust your need.
 
-Place your http assets under `/opt/appdata/nginx/`. The data will be mapped to `/www` inside the container
+Place your http assets under `/etc/nginx`. The data will be mapped to `/www` inside the container
 
 ## Run Locally
 

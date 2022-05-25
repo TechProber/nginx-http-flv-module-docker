@@ -9,6 +9,6 @@ services:
       - 80:80 # http
       - 1935:1935 # rtmp
     volumes:
-      - /opt/appdata/nginx:/www # http-assets
-      - /opt/appdata/nginx/config/nginx.conf:/etc/nginx/nginx.conf # nginx.conf
+      - /etc/nginx:/www # http-assets
+      - /etc/nginx/nginx.conf:/etc/nginx/nginx.conf # nginx.conf
     restart: always
