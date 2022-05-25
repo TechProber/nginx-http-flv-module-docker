@@ -1,0 +1,14 @@
+---
+version: "3.8"
+
+services:
+  nginx-http-flv-module:
+    container_name: nginx
+    image: quay.io/techprober/nginx-http-flv-module:latest
+    ports:
+      - 80:80 # http
+      - 1935:1935 # rtmp
+    volumes:
+      - /etc/nginx:/www # http-assets
+      - /etc/nginx/nginx.conf:/etc/nginx/nginx.conf # nginx.conf
+    restart: always

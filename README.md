@@ -19,11 +19,11 @@
     </a>
 </p>
 
-### Introduction
+## Introduction
 
 CopyRight 2021-2022 TechProber. All rights reserved.
 
-Maintainer: [ Kevin Yu (@yqlbu) ](https://github.com/yqlbu), [ Huang (@earrmouth) ](https://github.com/earrmouth), and [ SuLingGG (@SuLingGG) ](https://github.com/SuLingGG)
+Maintainer: [ Kevin Yu (@yqlbu) ](https://github.com/yqlbu), [ Huang (@earrmouth) ](https://github.com/earrmouth), and [ Su (@SuLingGG) ](https://github.com/SuLingGG)
 
 This repo serves to provide the end-users a way to host their stream server easily with Nginx
 
@@ -31,22 +31,63 @@ This repo serves to provide the end-users a way to host their stream server easi
 
 > Both `rtmp` and `http` are recognized as `stream` in Nginx
 
-### Run locally
+## Usage Guide
+
+Since this repository is a clone from the original [nginx-http-flv-module](https://github.com/winshining/nginx-http-flv-module), please find the detail usage guide from it
+
+## Preparation
+
+Create the `/etc/nginx/` directory
 
 ```bash
-# build image locally
-docker-compose build
-
-# run container locally
-docker-compose up -d
+sudo mkdir -p /etc/nginx
+cd /etc/nginx
 ```
 
-### Latest Releases
+### Nginx Configuration
+
+##### Import Notes:
+
+> The `nginx.conf` are stored under `/etc/nginx/`, you may modify the default path to adjust your need.
+
+Replace `./nginx.conf` with your own configuration, if you plan to add extra configurations such as `rewrite-rules`. During the container build period, The `nginx.conf` will be copied to the associated path in the container.
+
+### Custom http assets
+
+##### Import Notes:
+
+> The `http-assets` are stored under `/etc/nginx/`, you may modify the default path to adjust your need.
+
+Place your http assets under `/etc/nginx/`. The data will be mapped to `/www` inside the container
+
+## Run Locally
+
+```bash
+# run container locally
+make run
+
+# restart container locally
+make restart
+```
+
+## CN Support
+
+Use the `cn-alicloud` as apk source to build the image locally
+
+```bash
+# run container locally
+docker-compose -f ./build/cn-support/docker-compose.yml up -d
+
+# restart container locally
+docker-compose -f ./build/cn-support/docker-compose.yml up -d --force-recreate
+```
+
+## Latest Releases
 
 - nginx - https://nginx.org/download/
 - nginx-http-flv-module - https://github.com/winshining/nginx-http-flv-module/archive/refs/tags/
 
-### References
+## References
 
 - https://github.com/alfg/docker-nginx-rtmp/blob/master/Dockerfile
 - https://github.com/nginxinc/docker-nginx/blob/6f0396c1e06837672698bc97865ffcea9dc841d5/mainline/alpine-perl/Dockerfile
