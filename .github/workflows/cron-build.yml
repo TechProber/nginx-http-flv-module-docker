@@ -47,6 +47,21 @@ jobs:
           echo "REPOSITORY=techprober/http-flv-module-docker" >> $GITHUB_ENV
           echo "IMAGE_TAG=latest" >> $GITHUB_ENV
 
+      - name: Install dependency packages
+        run: sudo apt-get install jq curl -y
+
+      - name: Fetch Nginx's latest release
+        run: |
+          curl -X GET  https://api.github.com/repos/nginx/nginx/tags | jq '.[0].name' | tr -d '""' | awk -F '-' '{print $2}'
+
+      - name: Fetch the latest release of Nginx
+        run: |
+          curl -X GET https://api.github.com/repos/nginx/nginx/tags | jq '.[0].name' | tr -d '""' | awk -F '-' '{print $2}'
+
+      - name: Fetch the latest release of nginx-http-flv-module
+        run: |
+          curl -X GET https://api.github.com/repos/winshining/nginx-http-flv-module/tags | tr -d '""' | awk -F '-' '{print $2}'
+
       # # The docker/setup-qemu action installs QEMU static binaries, which are used to run builders for architectures other than the host.
       # - name: Set up QEMU
       #   uses: docker/setup-qemu-action@v1
@@ -66,7 +81,7 @@ jobs:
       #   with:
       #     registry: ${{ env.REGISTRY }}
       #     username: ${{ github.actor }}
-      #     password: ${{ secrets.TOKEN }}
+      #     password: ${{ secrets.QUAY_PASS }}
 
       # # Build and Push the images
       # - name: Build and Push Latest Image
