@@ -52,7 +52,7 @@ jobs:
         run: |
           echo "REGISTRY=quay.io" >> $GITHUB_ENV
           echo "USERNAME=techprober" >> $GITHUB_ENV
-          echo "IMAGE_NAME=http-flv-module-docker" >> $GITHUB_ENV
+          echo "IMAGE_NAME=nginx-http-flv-module" >> $GITHUB_ENV
           echo "IMAGE_TAG=latest" >> $GITHUB_ENV
 
       - name: Install dependency packages
