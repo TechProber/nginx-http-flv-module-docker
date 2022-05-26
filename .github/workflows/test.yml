@@ -63,7 +63,7 @@ jobs:
 
       - name: Fetch the latest release of nginx-http-flv-module
         run: |
-          echo "NGINX_HTTP_FLV_MODULE=$(curl -X GET https://api.github.com/repos/winshining/nginx-http-flv-module/tags | tr -d '""' | awk -F '-' '{print $2}')" >> $GITHUB_ENV
+          echo "NGINX_HTTP_FLV_MODULE=$(curl -X GET https://api.github.com/repos/winshining/nginx-http-flv-module/tags | jq '.[0].name' | tr -d '""' | awk -F 'v' '{print $2}')" >> $GITHUB_ENV
 
       - name: Test ENV export
         run: |
