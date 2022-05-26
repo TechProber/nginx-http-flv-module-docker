@@ -7,7 +7,7 @@
     <img src="https://custom-icon-badges.herokuapp.com/github/license/TechProber/nginx-http-flv-module-docker?logo=law&color=orange" alt="License"/>
     <img src="https://custom-icon-badges.herokuapp.com/github/workflow/status/TechProber/nginx-http-flv-module-docker/Docker%20Weekly%20Cron%20CI?logo=check-circle-fill&logoColor=white"/>
     <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FTechProber%2Fnginx-http-flv-module-docker&count_bg=%235322B2&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/>
-    <img src="https://img.shields.io/badge/docker-v20.10-blue" alt="Version">
+    <img src="https://custom-icon-badges.herokuapp.com/badge/docker-v20.10-blue.svg?logo=docker&logoColor=blue" alt="Docker">
     <img src="https://custom-icon-badges.herokuapp.com/github/last-commit/TechProber/nginx-http-flv-module-docker?logo=history&logoColor=white" alt="lastcommit"/>
 </p>
 
