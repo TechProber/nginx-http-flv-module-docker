@@ -6,6 +6,9 @@ services:
     build:
       context: ./
       dockerfile: ./Dockerfile
+      args:
+        NGINX_VERSION: 1.22.0
+        NGINX_HTTP_FLV_MODULE: 1.2.10
     container_name: nginx
     ports:
       - 80:80 # http
