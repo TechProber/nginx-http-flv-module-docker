@@ -66,10 +66,6 @@ jobs:
         run: |
           echo "NGINX_HTTP_FLV_MODULE=$(curl -X GET https://api.github.com/repos/winshining/nginx-http-flv-module/tags | jq '.[0].name' | tr -d '""' | awk -F 'v' '{print $2}')" >> $GITHUB_ENV
 
-      - name: Test ENV export
-        run: |
-          echo $NGINX_VERSION $NGINX_HTTP_FLV_MODULE
-
       # The docker/setup-qemu action installs QEMU static binaries, which are used to run builders for architectures other than the host.
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
