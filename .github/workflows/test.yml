@@ -51,17 +51,18 @@ jobs:
       - name: Set environment variable
         run: |
           echo "REGISTRY=quay.io" >> $GITHUB_ENV
-          echo "REPOSITORY=techprober/http-flv-module-docker" >> $GITHUB_ENV
+          echo "USERNAME=techprober" >> $GITHUB_ENV
+          echo "IMAGE_NAME=http-flv-module-docker" >> $GITHUB_ENV
           echo "IMAGE_TAG=latest" >> $GITHUB_ENV
 
       - name: Install dependency packages
         run: sudo apt-get install jq curl -y
 
-      - name: Fetch the latest release of Nginx
+      - name: Fetch the latest release from nginx
         run: |
          echo "NGINX_VERSION=$(curl -X GET https://api.github.com/repos/nginx/nginx/tags | jq '.[0].name' | tr -d '""' | awk -F '-' '{print $2}')" >> $GITHUB_ENV
 
-      - name: Fetch the latest release of nginx-http-flv-module
+      - name: Fetch the latest release from nginx-http-flv-module
         run: |
           echo "NGINX_HTTP_FLV_MODULE=$(curl -X GET https://api.github.com/repos/winshining/nginx-http-flv-module/tags | jq '.[0].name' | tr -d '""' | awk -F 'v' '{print $2}')" >> $GITHUB_ENV
 
@@ -69,35 +70,38 @@ jobs:
         run: |
           echo $NGINX_VERSION $NGINX_HTTP_FLV_MODULE
 
-      # # The docker/setup-qemu action installs QEMU static binaries, which are used to run builders for architectures other than the host.
-      # - name: Set up QEMU
-      #   uses: docker/setup-qemu-action@v1
-      #   with:
-      #     image: tonistiigi/binfmt:latest
-      #     platforms: all
+      # The docker/setup-qemu action installs QEMU static binaries, which are used to run builders for architectures other than the host.
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+        with:
+          image: tonistiigi/binfmt:latest
+          platforms: all
 
-      # # The docker/setup-buildx action configures buildx, which is a Docker CLI plugin that provides enhanced build capabilities.
-      # - name: Set up Docker Buildx
-      #   id: buildx
-      #   uses: docker/setup-buildx-action@v1
+      # The docker/setup-buildx action configures buildx, which is a Docker CLI plugin that provides enhanced build capabilities.
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
 
-      # # Login to GitHub Container Registry
-      # - name: Login to Quay Container Registry
-      #   if: github.event_name != 'pull_request'
-      #   uses: docker/login-action@v1
-      #   with:
-      #     registry: ${{ env.REGISTRY }}
-      #     username: ${{ github.actor }}
-      #     password: ${{ secrets.QUAY_PASS }}
+      # Login to GitHub Container Registry
+      - name: Login to Quay Container Registry
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ env.USERNAME }}
+          password: ${{ secrets.QUAY_PASS }}
 
-      # # Build and Push the images
-      # - name: Build and Push Latest Image
-      #   uses: docker/build-push-action@v2
-      #   with:
-      #     builder: ${{ steps.buildx.outputs.name }}
-      #     context: .
-      #     file: ./ci/Dockerfile
-      #     platforms: linux/amd64,linux/arm64
-      #     push: true
-      #     tags: |
-      #       ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}
+      # Build and Push the images
+      - name: Build and Push Latest Image
+        uses: docker/build-push-action@v2
+        with:
+          builder: ${{ steps.buildx.outputs.name }}
+          context: .
+          file: ./build/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          build-args:
+            - NGINX_VERSION=${{ env.NGINX_VERSION }}
+            - NGINX_HTTP_FLV_MODULE=${{ env.NGINX_HTTP_FLV_MODULE }}
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
