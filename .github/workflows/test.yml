@@ -1,0 +1,103 @@
+#              _                 _     _   _                __ _
+#  _ __   __ _(_)_ __ __  __    | |__ | |_| |_ _ __        / _| |_   __
+# | '_ \ / _` | | '_ \\ \/ /____| '_ \| __| __| '_ \ _____| |_| \ \ / /____
+# | | | | (_| | | | | |>  <_____| | | | |_| |_| |_) |_____|  _| |\ V /_____|
+# |_| |_|\__, |_|_| |_/_/\_\    |_| |_|\__|\__| .__/      |_| |_| \_/
+#        |___/                                |_|
+#                      _       _                _            _
+#  _ __ ___   ___   __| |_   _| | ___        __| | ___   ___| | _____ _ __
+# | '_ ` _ \ / _ \ / _` | | | | |/ _ \_____ / _` |/ _ \ / __| |/ / _ \ '__|
+# | | | | | | (_) | (_| | |_| | |  __/_____| (_| | (_) | (__|   <  __/ |
+# |_| |_| |_|\___/ \__,_|\__,_|_|\___|      \__,_|\___/ \___|_|\_\___|_|
+#
+# https://github.com/TechProber/nginx-http-flv-module-docker
+#
+# Copyright (C) 2022 TechProber
+#
+# This is a open-source software, liscensed under the MIT License.
+# See /License for more information.
+
+name: Docker Weekly Cron CI
+
+# Controls when the action will run.
+on:
+  schedule:
+    # Runs everyweek on Sunday 0:00 AM
+    - cron: "0 0 * * 0"
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Pre-Prod Notes'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "multi-arch build"
+  multi-arch-build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Get current tag version and pass it as environment variable
+      - name: Set environment variable
+        run: |
+          echo "REGISTRY=quay.io" >> $GITHUB_ENV
+          echo "REPOSITORY=techprober/http-flv-module-docker" >> $GITHUB_ENV
+          echo "IMAGE_TAG=latest" >> $GITHUB_ENV
+
+      - name: Install dependency packages
+        run: sudo apt-get install jq curl -y
+
+      - name: Fetch the latest release of Nginx
+        run: |
+         echo "NGINX_VERSION=$(curl -X GET https://api.github.com/repos/nginx/nginx/tags | jq '.[0].name' | tr -d '""' | awk -F '-' '{print $2}')" >> $GITHUB_ENV
+
+      - name: Fetch the latest release of nginx-http-flv-module
+        run: |
+          echo "NGINX_HTTP_FLV_MODULE=$(curl -X GET https://api.github.com/repos/winshining/nginx-http-flv-module/tags | tr -d '""' | awk -F '-' '{print $2}')" >> $GITHUB_ENV
+
+      - name: Test ENV export
+        run: |
+          echo $NGINX_VERSION $NGINX_HTTP_FLV_MODULE
+
+      # # The docker/setup-qemu action installs QEMU static binaries, which are used to run builders for architectures other than the host.
+      # - name: Set up QEMU
+      #   uses: docker/setup-qemu-action@v1
+      #   with:
+      #     image: tonistiigi/binfmt:latest
+      #     platforms: all
+
+      # # The docker/setup-buildx action configures buildx, which is a Docker CLI plugin that provides enhanced build capabilities.
+      # - name: Set up Docker Buildx
+      #   id: buildx
+      #   uses: docker/setup-buildx-action@v1
+
+      # # Login to GitHub Container Registry
+      # - name: Login to Quay Container Registry
+      #   if: github.event_name != 'pull_request'
+      #   uses: docker/login-action@v1
+      #   with:
+      #     registry: ${{ env.REGISTRY }}
+      #     username: ${{ github.actor }}
+      #     password: ${{ secrets.QUAY_PASS }}
+
+      # # Build and Push the images
+      # - name: Build and Push Latest Image
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     builder: ${{ steps.buildx.outputs.name }}
+      #     context: .
+      #     file: ./ci/Dockerfile
+      #     platforms: linux/amd64,linux/arm64
+      #     push: true
+      #     tags: |
+      #       ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}
