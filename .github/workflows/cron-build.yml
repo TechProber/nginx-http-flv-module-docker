@@ -50,10 +50,6 @@ jobs:
       - name: Install dependency packages
         run: sudo apt-get install jq curl -y
 
-      - name: Fetch Nginx's latest release
-        run: |
-          curl -X GET  https://api.github.com/repos/nginx/nginx/tags | jq '.[0].name' | tr -d '""' | awk -F '-' '{print $2}'
-
       - name: Fetch the latest release of Nginx
         run: |
           curl -X GET https://api.github.com/repos/nginx/nginx/tags | jq '.[0].name' | tr -d '""' | awk -F '-' '{print $2}'
