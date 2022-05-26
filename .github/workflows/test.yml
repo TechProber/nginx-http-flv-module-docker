@@ -100,8 +100,8 @@ jobs:
           file: ./build/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          build-args:
-            - NGINX_VERSION=${{ env.NGINX_VERSION }}
-            - NGINX_HTTP_FLV_MODULE=${{ env.NGINX_HTTP_FLV_MODULE }}
+          build-args: |
+            NGINX_VERSION=${{ env.NGINX_VERSION }}
+            NGINX_HTTP_FLV_MODULE=${{ env.NGINX_HTTP_FLV_MODULE }}
           tags: |
             ${{ env.REGISTRY }}/${{ env.USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
