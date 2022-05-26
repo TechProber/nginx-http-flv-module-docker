@@ -22,8 +22,8 @@ name: Docker Weekly Cron CI
 # Controls when the action will run.
 on:
   schedule:
-    # Runs at 00:00 everyweek
-    - cron: "0 0 0 * *"
+    # Runs everyweek on Sunday 0:00 AM
+    - cron: "0 0 * * 0"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
