@@ -5,15 +5,10 @@
 
 <p align="center">
     <img src="https://img.shields.io/badge/license-MIT-critical" alt="License"/>
-    <a href="https://hits.seeyoufarm.com">
-      <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FTechProber%2Fnginx-http-flv-module-docker&count_bg=%235322B2&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/>
-    </a>
-    <a href="https://hub.docker.com/repository/docker/hikariai/">
-        <img src="https://img.shields.io/badge/docker-v20.10-blue" alt="Version">
-    </a>
-    <a href="https://github.com/TechProber/nginx-http-flv-module-docker">
-        <img src="https://img.shields.io/github/last-commit/TechProber/nginx-http-flv-module-docker" alt="lastcommit"/>
-    </a>
+    <img src="https://custom-icon-badges.herokuapp.com/github/workflow/status/DenverCoder1/custom-icon-badges/Node.js%20CI?logo=check-circle-fill&logoColor=white"/>
+    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FTechProber%2Fnginx-http-flv-module-docker&count_bg=%235322B2&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/>
+    <img src="https://img.shields.io/badge/docker-v20.10-blue" alt="Version">
+    <img src="https://img.shields.io/github/last-commit/TechProber/nginx-http-flv-module-docker" alt="lastcommit"/>
 </p>
 
 ## Introduction
