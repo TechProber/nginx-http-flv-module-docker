@@ -59,11 +59,15 @@ jobs:
 
       - name: Fetch the latest release of Nginx
         run: |
-          curl -X GET https://api.github.com/repos/nginx/nginx/tags | jq '.[0].name' | tr -d '""' | awk -F '-' '{print $2}'
+         echo "NGINX_VERSION=$(curl -X GET https://api.github.com/repos/nginx/nginx/tags | jq '.[0].name' | tr -d '""' | awk -F '-' '{print $2}')" >> $GITHUB_ENV
 
       - name: Fetch the latest release of nginx-http-flv-module
         run: |
-          curl -X GET https://api.github.com/repos/winshining/nginx-http-flv-module/tags | tr -d '""' | awk -F '-' '{print $2}'
+          echo "NGINX_HTTP_FLV_MODULE=$(curl -X GET https://api.github.com/repos/winshining/nginx-http-flv-module/tags | tr -d '""' | awk -F '-' '{print $2}')" >> $GITHUB_ENV
+
+      - name: Test ENV export
+        run: |
+          echo $NGINX_VERSION $NGINX_HTTP_FLV_MODULE
 
       # # The docker/setup-qemu action installs QEMU static binaries, which are used to run builders for architectures other than the host.
       # - name: Set up QEMU
