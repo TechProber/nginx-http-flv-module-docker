@@ -61,6 +61,9 @@ make run
 
 # restart container locally
 make restart
+
+# run with docker-compose natively
+docker-compose up -d
 ```
 
 ## CN Support
